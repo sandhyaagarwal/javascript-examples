@@ -271,7 +271,7 @@ The argument to the click handler is a function, which is known as the callback-
 Consider the following example :
 
 ```javascript
-var person = (function(firstName, lastName, yearOfBirth) {
+var person = (function() {
   var age;
 
   function isTeenager() {
@@ -290,19 +290,20 @@ var person = (function(firstName, lastName, yearOfBirth) {
     return age > 5 && age < 8;
   }
 
-  function calculateAge() {
+  function calculateAge(yearOfBirth) {
     age = new Date().getFullYear() - yearOfBirth;
   }
 
   return {
-    getAge: function() {
-      calculateAge();
+    getAge: function(yearOfBirth) {
+      calculateAge(yearOfBirth);
       return age;
     },
     getName: function() {
       return firstName + " " + lastName;
     },
-    getAgeGroup: function() {
+    getAgeGroup: function(yearOfBirth) {
+    	calculateAge(yearOfBirth);
       if (isTeenager()) {
         return "Teenager";
       } else if (isAdult()) {
@@ -315,10 +316,11 @@ var person = (function(firstName, lastName, yearOfBirth) {
     }
 
   };
-})("Sandhya", "Agarwal", 1990);
+})();
 
-console.log(person.getAge());
-console.log(person.getAgeGroup());
+console.log(person.getAge(1984));
+console.log(person.getAgeGroup(2011));
+
 ```
 
 This kind of pattern is known as the **module** pattern and combines the advantages of **IIFE**s with **closures**. This pattern is used to emulate the concept of classes in [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming), by combining the private variables and functions wiith the public variables and functions, exposing only what is required to the outside world and not polluting the global space.
