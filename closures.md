@@ -275,13 +275,13 @@ An example can be found below :
 
 ```javascript
 function staffRole(title) {
-	return function(prefix) {
-  		return prefix + " " + title;
+  return function(prefix) {
+    return prefix + " " + title;
   }
 }
 
 var technicalStaff = staffRole("Technical Staff");
-var director = staffRole("Director"); 
+var director = staffRole("Director");
 var architect = staffRole("Architect");
 var designer = staffRole("Designer");
 var productManager = staffRole("Product Manager");
