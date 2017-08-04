@@ -253,7 +253,7 @@ for (var i = 1; i <= 5; i++) {
 
 The inner function above is an [**I**mmediately **I**nvoked **F**unction **E**xpression](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression), an anonymous function executed immediately after it is created.
 
-Closures are used in **Callbacks**
+## Closures are used in **Callbacks**
 
 A function that takes another function as an argument / returns another function as its result is known as a **higher-order** function. The function that is passed as an argument is known as a **callback** function.
 
@@ -267,6 +267,36 @@ $("#clickMe").click(function() {
 });
 ```
 The argument to the click handler is a function, which is known as the callback-function and is a closure. It can access the variables in the parent scope.
+
+## Closures as **Function Factories**
+
+Using closures, the outer function can be used to create factories of functions that are somehow related. 
+An example can be found below :
+
+```javascript
+function staffRole(title) {
+	return function(prefix) {
+  		return prefix + " " + title;
+  }
+}
+
+var technicalStaff = staffRole("Technical Staff");
+var director = staffRole("Director"); 
+var architect = staffRole("Architect");
+var designer = staffRole("Designer");
+var productManager = staffRole("Product Manager");
+
+console.log(technicalStaff("Associate member of"));
+console.log(technicalStaff("Member of"));
+console.log(technicalStaff("Senior member of"));
+console.log(technicalStaff("Principal member of"));
+
+console.log(director("Associate"));
+console.log(director(""));
+
+```
+
+## Using Closures to implement the Module Pattern
 
 Consider the following example :
 
