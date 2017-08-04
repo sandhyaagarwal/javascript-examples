@@ -268,7 +268,60 @@ $("#clickMe").click(function() {
 ```
 The argument to the click handler is a function, which is known as the callback-function and is a closure. It can access the variables in the parent scope.
 
+Consider the following example :
 
+```javascript
+var person = (function(firstName, lastName, yearOfBirth) {
+  var age;
+
+  function isTeenager() {
+    return age >= 13 && age <= 19;
+  }
+
+  function isAdult() {
+    return age >= 21;
+  }
+
+  function isToddler() {
+    return age <= 5;
+  }
+
+  function isKindergartner() {
+    return age > 5 && age < 8;
+  }
+
+  function calculateAge() {
+    age = new Date().getFullYear() - yearOfBirth;
+  }
+
+  return {
+    getAge: function() {
+      calculateAge();
+      return age;
+    },
+    getName: function() {
+      return firstName + " " + lastName;
+    },
+    getAgeGroup: function() {
+      if (isTeenager()) {
+        return "Teenager";
+      } else if (isAdult()) {
+        return "Adult"
+      } else if (isToddler()) {
+        return "Toddler";
+      } else if (isKindergartner()) {
+        return "Kindergartner";
+      }
+    }
+
+  };
+})("Sandhya", "Agarwal", 1990);
+
+console.log(person.getAge());
+console.log(person.getAgeGroup());
+```
+
+This kind of pattern is known as the **module** pattern and combines the advantages of **IIFE**s with **closures**. This pattern is used to emulate the concept of classes in [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming), by combining the private variables and functions wiith the public variables and functions, exposing only what is required to the outside world and not polluting the global space.
 
 </div>
 
