@@ -210,7 +210,7 @@ printer(); // prints "Hello !"
 
 The variable ```printer``` still holds a reference to the variable ```message```, wven after the outer function has returned.
 
-Consider the example below for event handling :
+## Closures for event handling
 
 ```javascript
 var list = document.getElementById('list');
