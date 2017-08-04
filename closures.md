@@ -210,6 +210,21 @@ printer(); // prints "Hello !"
 
 The variable ```printer``` still holds a reference to the variable ```message```, wven after the outer function has returned.
 
+## Closures in **Callbacks**
+
+A function that takes another function as an argument / returns another function as its result is known as a **higher-order** function. The function that is passed as an argument is known as a **callback** function.
+
+Consider the example below :
+
+```javascript
+var message = "I am clicked !";
+
+$("#clickMe").click(function() {
+	console.log(message);
+});
+```
+The argument to the click handler is a function, which is known as the callback-function and is a closure. It can access the variables in the parent scope.
+
 ## Closures for event handling
 
 ```javascript
@@ -253,21 +268,6 @@ for (var i = 1; i <= 5; i++) {
 
 The inner function above is an [**I**mmediately **I**nvoked **F**unction **E**xpression](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression), an anonymous function executed immediately after it is created.
 
-## Closures are used in **Callbacks**
-
-A function that takes another function as an argument / returns another function as its result is known as a **higher-order** function. The function that is passed as an argument is known as a **callback** function.
-
-Consider the example below :
-
-```javascript
-var message = "I am clicked !";
-
-$("#clickMe").click(function() {
-	console.log(message);
-});
-```
-The argument to the click handler is a function, which is known as the callback-function and is a closure. It can access the variables in the parent scope.
-
 ## Closures as **Function Factories**
 
 Using closures, the outer function can be used to create factories of functions that are somehow related. 
@@ -296,7 +296,7 @@ console.log(director(""));
 
 ```
 
-## Using Closures to implement the Module Pattern
+## Closures to implement the Module Pattern
 
 Consider the following example :
 
