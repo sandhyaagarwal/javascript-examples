@@ -37,7 +37,7 @@ The **scope** or a **namespace** of a variable / function is used to decide whic
 Consider the following example :
 
 ```javascript 
-function printHelloWorld() {
+function printMessage() {
     var message = "Hello World !";
     console.log(message); // prints message, it is in scope
 }
